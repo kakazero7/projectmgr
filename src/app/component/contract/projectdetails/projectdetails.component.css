@@ -1,0 +1,57 @@
+.flex-container {
+    margin: 10px;
+  }
+  .single-top-nav-bar{
+    height:28px;
+  }
+  
+  .title-container {
+    background-color: #fff;
+  }
+  
+  .sub-title {
+    margin: 10px 0 10px 0;
+    font-size: 14px;
+  }
+  
+  .content-container {
+    background-color: #f5f5f9;
+  }
+  
+  .content {
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    margin: 0 0 10px 0;
+  }
+  .content-title{ 
+    margin:0 0 10px 0; 
+  }
+  .content-content{
+    width: 100%;
+    margin:0 0 10px 0; 
+  }
+  .content-content-left{ 
+    text-align: left;
+  }
+  .content-content-right{ 
+    text-align: right;
+    color: red;
+  }
+  .content-content1{
+    margin:0; 
+    width: 100%;
+  }
+  .content-content1-left{ 
+    color: #bbb;
+  }
+  .content-content1-right{ 
+    color: #bbb;
+  }
+  .content-footer{
+    margin:0; 
+  }
+  
+  :host ::ng-deep .am-navbar-title{
+    font-size:12px;
+  }

@@ -1,0 +1,90 @@
+<Navbar [icon]="icon"
+        [mode]="'light'"
+        (onLeftClick)="event(data.events.onLeftClick,$event)"
+        class="nav_title">
+  合同管理
+</Navbar>
+
+<ng-template #icon>
+  <Icon [type]="'left'"></Icon>
+</ng-template>
+<div class="flex-container">
+  <div class="title-container">
+    <Flex>
+      <FlexItem>
+        <Navbar class="single-top-nav-bar" (click)="event(data.events.clickTopYearFilter,$event)">{{data.year}}
+        </Navbar>
+      </FlexItem>
+      <FlexItem>
+        <Navbar class="single-top-nav-bar" (click)="event(data.events.clickTopModelPlanFilter,$event)">{{data.modelPlan}}
+        </Navbar>
+      </FlexItem>
+      <FlexItem>
+        <Navbar class="single-top-nav-bar" (click)="event(data.events.clickTopModelClassFilter,$event)">{{data.modelClass}}
+        </Navbar>
+      </FlexItem>
+    </Flex>
+    <Menu *ngIf="data.showYear && data.initDataYear" class="multi-foo-menu" [data]="data.dataYear" [multiSelect]="false"
+      [level]="1" (onOk)="event(data.events.clickYearOk,$event)" (onCancel)="event(data.events.clickYearCancel,$event)"
+      (onChange)="event(data.events.onSelectYearChange,$event)" [height]="menuHeight">
+    </Menu>
+    <Menu *ngIf="data.showModelPlan && data.initDataModelPlan" class="multi-foo-menu" [data]="data.initDataModelPlan"
+      [level]="1" [multiSelect]="false" (onChange)="event(data.events.onSelectModelPlanChange,$event)" (onOk)="event(data.events.clickModelPlanOk,$event)"
+      (onCancel)="event(data.events.clickModelPlanCancel,$event)" [height]="menuHeight">
+    </Menu>
+    <Menu *ngIf="data.showModelClass && data.initDataModelClass" class="multi-foo-menu" [data]="data.initDataModelClass"
+      [level]="1" [multiSelect]="false" (onChange)="event(data.events.onSelectModelClassChange,$event)" (onOk)="event(data.events.clickModelClassOk,$event)"
+      (onCancel)="event(data.events.clickModelClassCancel,$event)" [height]="menuHeight">
+    </Menu>
+    <div *ngIf="showYear && !initDataYear" style="width: 100% ;height: 200px; display: flex; justify-content: center; align-items: center">
+      <ActivityIndicator [size]="'large'"></ActivityIndicator>
+    </div>
+    <div *ngIf="showYear" class="menu-mask2" (click)="event(data.events.onYearMaskClick,$event)"></div>
+    <div *ngIf="showModelPlan && !initDataModelPlan" style="width: 100% ;height: 200px; display: flex; justify-content: center; align-items: center">
+      <ActivityIndicator [size]="'large'"></ActivityIndicator>
+    </div>
+    <div *ngIf="showModelPlan" class="menu-mask2" (click)="event(data.events.onModelMaskPlanClick,$event)"></div>
+    <div *ngIf="showModelClass && !initDataModelClass" style="width: 100% ;height: 200px; display: flex; justify-content: center; align-items: center">
+      <ActivityIndicator [size]="'large'"></ActivityIndicator>
+    </div>
+    <div *ngIf="showModelClass" class="menu-mask2" (click)="event(data.events.onModelMaskClassClick,$event)"></div>
+
+    <SearchBar [placeholder]="'输入合同号\合同名称\承担单位\承担人'" [(ngModel)]="data.searchObj.queryValue" [maxLength]="10"
+      (onChange)="event(data.events.onQueryValueChange,$event)" (onClear)="event(data.events.onQueryValueClear,$event)"></SearchBar>
+  </div>
+
+  <div class="content-container">
+    <div class="sub-title">合同列表</div>
+    <div *ngIf="data.pageList.length>0">
+      <div class="content" *ngFor="let mainObj of data.pageList" (click)="event(data.events.navigatorDetail,mainObj)">
+        <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+          <FlexItem class="content-title">
+            {{mainObj.Projectname}}
+          </FlexItem>
+          <FlexItem class="content-content">
+            <Flex direction="row" align="between">
+              <FlexItem class="content-content-left">{{mainObj.NO}}</FlexItem>
+              <FlexItem class="content-content-right">待审批</FlexItem>
+            </Flex>
+          </FlexItem>
+          <FlexItem class="content-content1">
+            <Flex direction="row" align="start">
+              <FlexItem class="content-content1-left">{{mainObj.UndertakeUnitName}}</FlexItem>
+              <FlexItem class="content-content1-right">{{mainObj.CommitmentName}}</FlexItem>
+            </Flex>
+          </FlexItem>
+        </Flex>
+      </div>
+    </div>
+    <div *ngIf="data.pageList.length==0">
+      <div class="content">
+        <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+          <FlexItem class="content-title">
+            没有任何项目数据！
+          </FlexItem>
+          
+        </Flex>
+      </div>
+    </div>
+  </div>
+</div>

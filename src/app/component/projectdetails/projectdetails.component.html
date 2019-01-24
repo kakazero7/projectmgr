@@ -1,0 +1,33 @@
+<List [className]="'my-list'" [renderHeader]="(renderHeader)">
+  <ListItem [extra]="data.detailsContractData.Projectname">课题名称</ListItem>
+  <ListItem [extra]="data.detailsContractData.ContactPersonName">联系人</ListItem>
+  <ListItem [extra]="data.detailsContractData.CommitmentName">承担人姓名</ListItem>
+  <ListItem [extra]="data.detailsContractData.CommitmentGender">承担人性别</ListItem>
+  <ListItem [extra]="data.detailsContractData.CommitmentPosition">承担人职务职称</ListItem>
+  <ListItem [extra]="data.detailsContractData.ContactPersonPhone">联系人电话</ListItem>
+  <ListItem [extra]="data.detailsContractData.BeginDate">合同开始日期</ListItem>
+  <ListItem [extra]="data.detailsContractData.EndDate">合同结束日期</ListItem>
+</List>
+<List [className]="'my-list'" [renderHeader]="(renderHeader)">
+  <ListItem [extra]="data.detailsContractData.Projectname">课题名称</ListItem>
+  <ListItem [extra]="data.detailsContractData.ContactPersonName">联系人</ListItem>
+  <ListItem [extra]="data.detailsContractData.CommitmentName">承担人姓名</ListItem>
+  <ListItem [extra]="data.detailsContractData.CommitmentGender">承担人性别</ListItem>
+</List>
+
+<WingBlank>
+</WingBlank>
+<Flex>
+  <FlexItem>
+    <WhiteSpace></WhiteSpace>
+    <WingBlank>
+      <div Button (onClick)="event(data.events.failClick,$event)">审核不通过</div>
+    </WingBlank>
+  </FlexItem>
+  <FlexItem>
+    <WhiteSpace></WhiteSpace>
+    <WingBlank>
+      <div Button (onClick)="event(data.events.passedClick,$event)"  [type]="'primary'" style="background: #2B88FF;">审核通过</div>
+    </WingBlank>
+  </FlexItem>
+</Flex>

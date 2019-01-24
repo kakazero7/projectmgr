@@ -1,0 +1,32 @@
+.index_page {
+  font-size: 15px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+.index_flex_item {
+  margin: 10px;
+}
+.index_item {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  height:159px;
+  background:rgba(255,255,255,1);
+  box-shadow:2px 3px 8px 0 rgba(219,219,219,0.5);
+  background: #fff;
+  border-radius: 10px;
+  text-align: center;
+  font-weight:500;
+  color:rgba(28,28,28,1);
+  line-height:21px;
+  letter-spacing:1px;
+
+}
+.am-flexbox .am-flexbox-item:first-child {
+  margin-left:10px;
+}
