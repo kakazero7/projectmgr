@@ -1,18 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {Modal, Toast} from 'ng-zorro-antd-mobile';
-import Details from '../../../business/contract.details.business';
+import Details from '../../../business/acceptance.details.business';
 import {ActivatedRoute} from '@angular/router';
-import Tools from '../../../tools/tools';
-import IndexBusiness from '../../../business/index.business';
 import CacheService from 'fccore2/common/cache';
 
 @Component({
-  selector: 'app-projectdetails',
+  selector: 'app-acceptanceprojectdetails',
   templateUrl: './projectdetails.component.html',
   styleUrls: ['./projectdetails.component.less'],
   providers: [Toast]
 })
-export class ContractProjectdetailsComponent implements OnInit {
+export class AcceptanceProjectdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getDetailsContract();
   }
@@ -56,7 +54,7 @@ export class ContractProjectdetailsComponent implements OnInit {
     const userId = this.route.snapshot.queryParams['ID']; // 获取url参数
     const jsonData = {
       userId: CacheService.get('oaUserId'),
-      moduleId: '1_03',
+      moduleId: '1_06',
       id: userId,
     };
     Details.getDetailsContract(this, jsonData);

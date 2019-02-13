@@ -1,0 +1,23 @@
+<Navbar [icon]="icon"
+        [mode]="'light'"
+        (onLeftClick)="event(data.events.onLeftClick,$event)"
+        class="nav_title">
+  执行管理
+</Navbar>
+<ng-template #icon>
+  <Icon [type]="'left'" style="color:#000"></Icon>
+</ng-template>
+
+<Card class="outerchain_card">
+  <CardHeader [title]="'标题'">
+  </CardHeader>
+  <CardBody>
+    <div>
+      {{data.outchaindata}}
+    </div>
+  </CardBody>
+</Card>
+
+<WingBlank>
+</WingBlank>
+

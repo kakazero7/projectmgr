@@ -1,0 +1,7 @@
+:host ::ng-deep .nav_title .am-navbar-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.outerchain_card {
+  margin: 12px 19px;
+}

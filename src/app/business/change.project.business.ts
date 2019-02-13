@@ -408,7 +408,7 @@ export default class ProjectBusiness extends ParentBusiness {
   // 请选择角色，根据角色SEARCHSCOPE的值作为查询条件
   static findWithQuery(pthis: any, context: any): void {
     const jsonData = {
-      moduleId: '1_03', // (查询模块)分为4种：1_03-合同；1_04-执行；1_05-变更；1_06-验收
+      moduleId: '1_05', // (查询模块)分为4种：1_03-合同；1_04-执行；1_05-变更；1_06-验收
       userId: CacheService.get('oaUserId'),
       year: pthis.data.year === '年度' ? '2018' : pthis.data.year, // 年度
       searchScope: '1', // 必填，0或1，0表示查询待审核，1表示查询所有合同
@@ -504,7 +504,7 @@ export default class ProjectBusiness extends ParentBusiness {
    * @param context 事件上下文，事件参数
    */
   static navigatorDetail(pthis: any, context: any): void {
-    ParentBusiness.router.navigate(['/contract-projectdetails'], {
+    ParentBusiness.router.navigate(['/change-projectdetails'], {
       queryParams: {
         ID: context.id
       }

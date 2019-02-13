@@ -1,7 +1,3 @@
-:host ::ng-deep body, html {
-  height: 100%;
-}
-
 :host ::ng-deep .nav_title .am-navbar-title {
   font-size: 18px;
   font-weight: 500;
@@ -13,21 +9,6 @@
 
 .single-top-nav-bar {
   height: 28px;
-}
-
-.tabs-container {
-  height: 100%;
-  padding-top: 45px;
-  box-sizing: border-box;
-  overflow: auto;
-}
-
-.tabs-navbar {
-  position: absolute;
-  z-index: 500;
-  top: 0;
-  width: 100%;
-  background-color: #FAFAFA;
 }
 
 .title-container {
@@ -87,4 +68,47 @@
 
 :host ::ng-deep .am-navbar-title {
   font-size: 12px;
+}
+.list_header {
+  color: #888;
+  padding: 12px 20px;
+}
+.list_header span {
+  font-size: 15px;
+  display: inline-block;
+  border-left: 6px solid #2B88FF;
+  text-indent: 10px;
+}
+:host ::ng-deep .am-button {
+  border-radius: 46px;
+  box-shadow:1px 1px 3px 0 rgba(196,196,196,0.5);
+}
+
+:host ::ng-deep .am-list-item .am-list-line .am-list-content {
+  white-space: normal;
+  font-size: 15px;
+  color: #979797;
+}
+:host ::ng-deep .am-list-item .am-list-line .am-list-extra {
+  white-space: normal;
+  font-size: 15px;
+  color: #333;
+}
+:host ::ng-deep .tohref_color .am-list-content {
+  color: #2B88FF!important;
+}
+
+.tabs-container {
+  height: 100%;
+  padding-top: 45px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.tabs-navbar {
+  position: absolute;
+  z-index: 500;
+  top: 0;
+  width: 100%;
+  background-color: #FAFAFA;
 }

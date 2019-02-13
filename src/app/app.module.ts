@@ -10,19 +10,34 @@ import {FccoreModule} from 'fccore2';
 import {RouterModule} from '@angular/router';
 import {ContractProjectlistComponent} from './component/contract/projectlist/projectlist.component';
 import {ContractProjectdetailsComponent} from './component/contract/projectdetails/projectdetails.component';
-import {ProjectlistComponent} from './component/projectlist/projectlist.component';
-import {ProjectdetailsComponent} from './component/projectdetails/projectdetails.component';
+import {ContractOuterchaindataComponent} from './component/contract/outerchaindata/outerchaindata.component';
+import {ExecuteProjectlistComponent} from './component/execute/projectlist/projectlist.component';
+import {ExecuteProjectdetailsComponent} from './component/execute/projectdetails/projectdetails.component';
+import {ExecuteOuterchaindataComponent} from './component/execute/outerchaindata/outerchaindata.component';
+import {ChangeProjectlistComponent} from './component/change/projectlist/projectlist.component';
+import {ChangeProjectdetailsComponent} from './component/change/projectdetails/projectdetails.component';
+import {ChangeOuterchaindataComponent} from './component/change/outerchaindata/outerchaindata.component';
+import {AcceptanceProjectlistComponent} from './component/acceptance/projectlist/projectlist.component';
+import {AcceptanceProjectdetailsComponent} from './component/acceptance/projectdetails/projectdetails.component';
+import {AcceptanceOuterchaindataComponent} from './component/acceptance/outerchaindata/outerchaindata.component';
 import {IndexComponent} from './component/index/index.component';
 import {AppRoutes} from './app.route';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     ContractProjectlistComponent,
+    ContractOuterchaindataComponent,
     ContractProjectdetailsComponent,
-    ProjectlistComponent,
-    ProjectdetailsComponent,
+    ExecuteProjectlistComponent,
+    ExecuteProjectdetailsComponent,
+    ExecuteOuterchaindataComponent,
+    ChangeProjectlistComponent,
+    ChangeProjectdetailsComponent,
+    ChangeOuterchaindataComponent,
+    AcceptanceProjectlistComponent,
+    AcceptanceProjectdetailsComponent,
+    AcceptanceOuterchaindataComponent,
     IndexComponent,
   ],
   imports: [

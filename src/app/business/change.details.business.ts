@@ -37,7 +37,7 @@ export default class DetailsBusiness extends ParentBusiness {
         text: '确认', onPress: () => {
           const postData = Tools.parseParams({
             id: this.data.detailsContractData.projectId,
-            moduleId: '1_03',
+            moduleId: '1_05',
             checkResult: '1',
             review: '通过',
             userId: CacheService.get('oaUserId')
@@ -85,7 +85,7 @@ export default class DetailsBusiness extends ParentBusiness {
         text: '确认', onPress: value => {
           const postData = Tools.parseParams({
             id: this.data.detailsContractData.projectId,
-            moduleId: '1_03',
+            moduleId: '1_05',
             checkResult: '0',
             review: value,
             userId: CacheService.get('oaUserId')
