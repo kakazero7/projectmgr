@@ -1,22 +1,32 @@
-<Navbar [mode]="'light'">首页
+<Navbar [mode]="'light'"
+        [rightContent]="rightContent">首页
 </Navbar>
+
+<ng-template #rightContent>
+  <Icon [type]="'cross'" [ngStyle]="{color: '#000'}" (click)="event(data.events.closepage,$event)"></Icon>
+</ng-template>
 
 <Flex class="index_page">
   <FlexItem class="index_flex_item">
-    <div class="index_item" (click)="event(data.events.navigatorList,$event,1)"><img style="width: 40px;margin-bottom: 16px;" src="../../../assets/contractIcon.png" alt="img">合同管理</div>
+    <div class="index_item" (click)="event(data.events.navigatorList,$event,1)"><img
+      style="width: 40px;margin-bottom: 16px;" src="./assets/contractIcon.png" alt="img">合同管理
+    </div>
   </FlexItem>
   <FlexItem class="index_flex_item">
-    <div class="index_item" (click)="event(data.events.navigatorList,$event,2)"><img style="width: 40px;margin-bottom: 16px;" src="../../../assets/executeIcon.png" alt="img">执行管理
+    <div class="index_item" (click)="event(data.events.navigatorList,$event,2)"><img
+      style="width: 40px;margin-bottom: 16px;" src="./assets/executeIcon.png" alt="img">执行管理
     </div>
   </FlexItem>
 </Flex>
 <Flex class="index_page">
   <FlexItem class="index_flex_item">
-    <div class="index_item" (click)="event(data.events.navigatorList,$event,3)"><img style="width: 40px;margin-bottom: 16px;" src="../../../assets/changeIcon.png" alt="img">变更管理
+    <div class="index_item" (click)="event(data.events.navigatorList,$event,3)"><img
+      style="width: 40px;margin-bottom: 16px;" src="./assets/changeIcon.png" alt="img">变更管理
     </div>
   </FlexItem>
   <FlexItem class="index_flex_item">
-    <div class="index_item" (click)="event(data.events.navigatorList,$event,4)"><img style="width: 40px;margin-bottom: 16px;" src="../../../assets/acceptanceIcon.png" alt="img">验收管理
+    <div class="index_item" (click)="event(data.events.navigatorList,$event,4)"><img
+      style="width: 40px;margin-bottom: 16px;" src="./assets/acceptanceIcon.png" alt="img">验收管理
     </div>
   </FlexItem>
 </Flex>

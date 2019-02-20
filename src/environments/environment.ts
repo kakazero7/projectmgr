@@ -4,18 +4,19 @@
 
 export const environment = {
   production: false,
-  pid: "",
-  projectName: "",
-  systemurl: "/server/",
-  apiurl: "/server/api/",
-  logurl: "/server/api/",
-  authurl: "/server/api/",
-  mockurl: "https://www.easy-mock.com/mock/5b863b1653caec39da89b95b/projectmgr/",
-  //报表路径无须代理，请填写全路径，
-  reporturl:"http://store.pcorp.cn/server/ReportServer", 
+  pid: '',
+  projectName: '',
+  systemurl: '/server/',
+  apiurl: '/server/api/',
+  logurl: '/server/api/',
+  authurl: '/server/api/',
+  mockurl: 'https://www.easy-mock.com/mock/5b863b1653caec39da89b95b/projectmgr/',
+  // 报表路径无须代理，请填写全路径
+  reporturl: 'http://store.pcorp.cn/server/ReportServer',
   // websocket 无须代理，请填写全路径
-  wsurl: "ws://store.pcorp.cn/server/msg", 
-  license:''
+  wsurl: 'ws://store.pcorp.cn/server/msg',
+  license: '',
+  moblieSystemController: 'http://localhost:8087/mobile/moblieSystemController/'
 };
 
 /*

@@ -11,46 +11,41 @@
       <Icon [type]="'left'" style="color:#000"></Icon>
     </ng-template>
   </div>
-
   <div class="tabs-container">
     <div class="list_header"><span>基本信息</span></div>
     <List [className]="'my-list'">
-
+      <ListItem [extra]="data.detailsContractData.projectname">课题名称</ListItem>
+      <ListItem [extra]="data.detailsContractData.projectCode">课题合同号</ListItem>
+      <ListItem [extra]="data.detailsContractData.PlanTypeName">课题计划类型名称</ListItem>
+      <ListItem [extra]="data.detailsContractData.undertakeUnitName">承担单位名称</ListItem>
       <ListItem [extra]="data.detailsContractData.commitmentName">承担人姓名</ListItem>
-      <ListItem [extra]="data.detailsContractData.commitmentGender">承担人性别</ListItem>
-      <ListItem [extra]="data.detailsContractData.commitmentAge">承担人年龄</ListItem>
-      <ListItem [extra]="data.detailsContractData.commitmentPersonIDNo">承担人身份证号</ListItem>
-      <ListItem [extra]="data.detailsContractData.commitmentPosition">承担人职务职称</ListItem>
+      <ListItem [extra]="data.detailsContractData.postion">承担人职称</ListItem>
+      <ListItem [extra]="data.detailsContractData.age">承担人年龄</ListItem>
+      <ListItem [extra]="data.detailsContractData.taskDivision">承担人任务分工</ListItem>
+      <ListItem [extra]="data.detailsContractData.userUnitName">承担人所在单位</ListItem>
+      <ListItem [extra]="data.detailsContractData.email">承担人E-mail</ListItem>
+      <ListItem [extra]="data.detailsContractData.postCode">承担人所在单位邮编</ListItem>
       <ListItem [extra]="data.detailsContractData.contactPersonName">联系人</ListItem>
       <ListItem [extra]="data.detailsContractData.contactPersonPhone">联系人电话</ListItem>
-      <ListItem [extra]="data.detailsContractData.year">课题年度</ListItem>
-      <ListItem [extra]="data.detailsContractData.totalFunds">合同总经费</ListItem>
-      <ListItem [extra]="data.detailsContractData.applicationTotalFunds">合同批准经费</ListItem>
-      <ListItem [extra]="data.detailsContractData.applicationTotalFundsnNoVAT">甲方拨款（不含增值税）</ListItem>
-      <ListItem [extra]="data.detailsContractData.VAT">增值税</ListItem>
-      <ListItem [extra]="data.detailsContractData.beginDate">合同开始日期</ListItem>
-      <ListItem [extra]="data.detailsContractData.bndDate">合同结束日期</ListItem>
-      <ListItem [extra]="data.detailsContractData.status">合同信息状态（待填报、专业处审核通过、待审核等）</ListItem>
-      <ListItem [extra]="data.detailsContractData.endMark">课题结题状态（已结题、未结题）</ListItem>
-      <ListItem [extra]="data.detailsContractData.totalTopicName">总课题名</ListItem>
-      <ListItem [extra]="data.detailsContractData.administratorName">管理人姓名</ListItem>
-      <ListItem [extra]="data.detailsContractData.beginDate">合同开始日期</ListItem>
-      <ListItem [extra]="data.detailsContractData.bndDate">合同结束日期</ListItem>
+      <ListItem [extra]="data.detailsContractData.year">结题年度</ListItem>
+      <ListItem [extra]="data.detailsContractData.batch">结题批次</ListItem>
+      <ListItem [extra]="data.detailsContractData.beginEndDate">合同起止时间</ListItem>
+      <ListItem [extra]="data.detailsContractData.meetingAddress">课题验收会议地点</ListItem>
+      <ListItem [extra]="data.detailsContractData.meetingDate">课题验收会议日期（年-月-日）</ListItem>
+      <ListItem [extra]="data.detailsContractData.meetingTime">课题验收时间（14：25）</ListItem>
+      <ListItem [extra]="data.detailsContractData.docFullOrNot">课题文档是否齐全(0:否1：齐全)</ListItem>
+      <ListItem [extra]="data.detailsContractData.simpleDescrip">课题简要说明</ListItem>
+      <ListItem [extra]="data.detailsContractData.selfEvaluation">课题自评价报告内容</ListItem>
+      <ListItem [extra]="data.detailsContractData.conlusion">课题验收意见</ListItem>
     </List>
 
     <div class="list_header"><span>链接资料</span></div>
     <List [className]="'my-list tohref_color'">
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
-      </ListItem>
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
-      </ListItem>
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
-      </ListItem>
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
+      <ListItem [arrow]="'horizontal'" *ngFor="let titles of data.detailsContractData.titles;let i = index" (onClick)="event(data.events.navigatorToContents,i)">{{titles}}
       </ListItem>
     </List>
     <WhiteSpace [size]="'lg'"></WhiteSpace>
-    <Flex style="margin-bottom: 9px;">
+    <Flex style="margin-bottom: 9px;" *ngIf="data.auditerstatus == 1">
       <FlexItem>
         <WingBlank>
           <div Button (onClick)="event(data.events.failClick,$event)">审核不通过</div>

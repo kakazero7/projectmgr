@@ -40,17 +40,11 @@
 
     <div class="list_header"><span>链接资料</span></div>
     <List [className]="'my-list tohref_color'">
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
-      </ListItem>
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
-      </ListItem>
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
-      </ListItem>
-      <ListItem [arrow]="'horizontal'" (onClick)="event(data.events.navigatorToHref,$event)">国内外现状以及简要说明
+      <ListItem [arrow]="'horizontal'" *ngFor="let titles of data.detailsContractData.titles;let i = index" (onClick)="event(data.events.navigatorToContents,i)">{{titles}}
       </ListItem>
     </List>
     <WhiteSpace [size]="'lg'"></WhiteSpace>
-    <Flex style="margin-bottom: 9px;">
+    <Flex style="margin-bottom: 9px;" *ngIf="data.auditerstatus == 1">
       <FlexItem>
         <WingBlank>
           <div Button (onClick)="event(data.events.failClick,$event)">审核不通过</div>

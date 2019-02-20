@@ -13,6 +13,7 @@ import CacheService from 'fccore2/common/cache';
 export class ChangeProjectdetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getDetailsContract();
+    this.getAuditerStatus();
   }
 
   data: any = {};
@@ -31,8 +32,8 @@ export class ChangeProjectdetailsComponent implements OnInit {
     console.log(eventName);
     switch (eventName) {
       // 跳转至外链文章
-      case this.data.events.navigatorToHref:
-        Details.navigatorToHref(this, context);
+      case this.data.events.navigatorToContents:
+        Details.navigatorToContents(this, context);
         break;
       // 点击通过审批
       case this.data.events.passedClick:
@@ -58,5 +59,9 @@ export class ChangeProjectdetailsComponent implements OnInit {
       id: userId,
     };
     Details.getDetailsContract(this, jsonData);
+  }
+  getAuditerStatus() {
+    const auditerstatus = this.route.snapshot.queryParams['auditerstatus']; // 获取审批状态
+    Details.getAuditerStatus(this, auditerstatus);
   }
 }

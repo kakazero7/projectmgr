@@ -18,14 +18,4 @@ export default class OuterChainBusiness extends ParentBusiness {
     outchaindata: ''
   };
 
-
-  static getData(pthis: any, context: any): void {
-    ParentBusiness.daoService.getBase(environment.mockurl + this.url.getouterchain, context).subscribe(res => {
-      if (res.success == '1') {
-        this.data.outchaindata = res.data;
-      }
-    });
-  }
-
-
 }

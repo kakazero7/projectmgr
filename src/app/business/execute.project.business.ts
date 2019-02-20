@@ -14,6 +14,7 @@ export default class ProjectBusiness extends ParentBusiness {
     updateKyContractStatus: '/contract/contractCheck/updateKyContractStatus'
   };
 
+  static listArr: any = ['pageList', 'pageResolveList', 'pageRejectList'];
   /**
    * 事件池
    */
@@ -69,8 +70,14 @@ export default class ProjectBusiness extends ParentBusiness {
     searchObj: {
       queryValue: '',
     },
-    // 列表数据对象
+    // 待审核列表数据对象
     pageList: [],
+    // 通过列表数据对象
+    pageResolveList: [],
+    // 驳回列表数据对象
+    pageRejectList: [],
+    // 已审核列表数据对象
+    // pageAuditedList: [],
     // 事件对象
     events: ProjectBusiness.event,
     // 初始化的年度值对象
@@ -414,6 +421,7 @@ export default class ProjectBusiness extends ParentBusiness {
       searchScope: '1', // 必填，0或1，0表示查询待审核，1表示查询所有合同
       currentPage: '1', // 当前页
       pageSize: '10000', // 页大小
+      status: '', // 状态
       planTypeName: pthis.data.modelPlan === '计划类型' ? '' : pthis.data.modelPlan,
       categoryName: pthis.data.modelClass === '课题类别' ? '' : pthis.data.modelClass,
       multiParam: context.multiParam ? context.multiParam : '' // 综合查询字段
@@ -430,41 +438,18 @@ export default class ProjectBusiness extends ParentBusiness {
     //   // return;
     // }
     if (!environment.production) { // 当线上发布的时候执行
-      const postdata = Tools.parseParams(jsonData);
-      ParentBusiness.daoService.postBase(environment.moblieSystemController + this.url.getKyObjectListByConditions, postdata).subscribe(res => {
-        if (res.status === 'success' && res.data !== '') {
-          pthis.data.pageList = JSON.parse(res.data);
-          this.setData(pthis);
-        } else {
-          pthis.data.pageList.length = 0;
-        }
-      });
-    } else { // mock数据内容，开发版本的时候执行
-      pthis.data.pageList = [{
-        commitmentName: '潘龙江',
-        contractNo: '2017G002 - B',
-        id: '000000005c20343e015c215048b80013',
-        projectname: '严寒地区高速铁路CRTSI型板式无砟轨道病害整治技术研究',
-        showColumn: '未结题',
-        status: '专业处审核通过',
-        undertakeUnitName: '哈大铁路客运专线有限责任公司'
-      }, {
-        commitmentName: '潘龙江',
-        contractNo: '2017G002 - B',
-        id: '000000005c20343e015c215048b80013',
-        projectname: '严寒地区高速铁路CRTSI型板式无砟轨道病害整治技术研究',
-        showColumn: '未结题',
-        status: '专业处审核通过',
-        undertakeUnitName: '哈大铁路客运专线有限责任公司'
-      }, {
-        commitmentName: '潘龙江',
-        contractNo: '2017G002 - B',
-        id: '000000005c20343e015c215048b80013',
-        projectname: '严寒地区高速铁路CRTSI型板式无砟轨道病害整治技术研究',
-        showColumn: '未结题',
-        status: '专业处审核通过',
-        undertakeUnitName: '哈大铁路客运专线有限责任公司'
-      }];
+      for (let i = 0; i <= 2; i++) { // 需要请求3次接口...
+        jsonData.status = i + '';
+        const postdata = Tools.parseParams(jsonData);
+        ParentBusiness.daoService.postBase(environment.moblieSystemController + this.url.getKyObjectListByConditions, postdata).subscribe(res => {
+          if (res.status === 'success' && res.data !== '') {
+            pthis.data[this.listArr[i]] = JSON.parse(res.data);
+            this.setData(pthis);
+          } else {
+            pthis.data[this.listArr[i]].length = 0;
+          }
+        });
+      }
     }
   }
 
@@ -503,10 +488,12 @@ export default class ProjectBusiness extends ParentBusiness {
    * @param pthis 页面对象
    * @param context 事件上下文，事件参数
    */
-  static navigatorDetail(pthis: any, context: any): void {
+  static navigatorDetail(pthis: any, context: any, status: string): void {
+    console.log(typeof status);
     ParentBusiness.router.navigate(['/execute-projectdetails'], {
       queryParams: {
-        ID: context.id
+        ID: context.id,
+        auditerstatus: status
       }
     });
   }

@@ -1,5 +1,5 @@
 <div style="height: 100%;">
-  <div class="tabs-navbar" >
+  <div class="tabs-navbar">
     <Navbar [icon]="icon"
             [mode]="'light'"
             (onLeftClick)="event(data.events.onLeftClick,$event)"
@@ -70,39 +70,134 @@
       </div>
 
       <div class="content-container">
-        <div class="sub-title">合同列表</div>
-        <div *ngIf="data.pageList.length>0">
-          <div class="content" *ngFor="let mainObj of data.pageList"
-               (click)="event(data.events.navigatorDetail,mainObj)">
-            <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
-              <FlexItem class="content-title">
-                {{mainObj.projectname}}
-              </FlexItem>
-              <FlexItem class="content-content">
-                <Flex direction="row" align="between">
-                  <FlexItem class="content-content-left">{{mainObj.contractNo}}</FlexItem>
-                  <FlexItem class="content-content-right">{{mainObj.status}}</FlexItem>
-                </Flex>
-              </FlexItem>
-              <FlexItem class="content-content1">
-                <Flex direction="row" align="start">
-                  <FlexItem class="content-content1-left">{{mainObj.undertakeUnitName}}</FlexItem>
-                  <FlexItem class="content-content1-right">{{mainObj.commitmentName}}</FlexItem>
-                </Flex>
-              </FlexItem>
-            </Flex>
-          </div>
-        </div>
-        <div *ngIf="data.pageList.length==0">
-          <div class="content">
-            <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
-              <FlexItem class="content-title">
-                没有任何项目数据！
-              </FlexItem>
+        <div class="sub-title">变更列表</div>
 
-            </Flex>
-          </div>
-        </div>
+
+        <Tabs [useOnPan]="true"
+              [swipeable]="true"
+              [activeTab]="0"
+              [page]="2"
+              [tabBarActiveTextColor]="'#1890ff'"
+              (onChange)="onChange($event)"
+              (onTabClick)="onTabClick($event)"
+        >
+          <TabPane style="height: 667px; width: 100%; "
+                   [title]="titleTemplate"
+          >
+            <ng-template #titleTemplate>
+              <Badge>
+                <div>待审核</div>
+              </Badge>
+            </ng-template>
+            <div>
+
+              <div *ngIf="data.pageList.length>0">
+                <div class="content" *ngFor="let mainObj of data.pageList"
+                     (click)="event(data.events.navigatorDetail, mainObj, '1')">
+                  <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+                    <FlexItem class="content-title">
+                      {{mainObj.projectname}}
+                    </FlexItem>
+                    <FlexItem class="content-content">
+                      <Flex direction="row" align="between">
+                        <FlexItem class="content-content-left">{{mainObj.contractNo}}</FlexItem>
+                        <FlexItem class="content-content-right">{{mainObj.status}}</FlexItem>
+                      </Flex>
+                    </FlexItem>
+                    <FlexItem class="content-content1">
+                      <Flex direction="row" align="start">
+                        <FlexItem class="content-content1-left">{{mainObj.undertakeUnitName}}</FlexItem>
+                        <FlexItem class="content-content1-right">{{mainObj.commitmentName}}</FlexItem>
+                      </Flex>
+                    </FlexItem>
+                  </Flex>
+                </div>
+              </div>
+              <div *ngIf="data.pageList.length==0">
+                <div class="content">
+                  <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+                    <FlexItem class="content-title">
+                      没有任何项目数据！
+                    </FlexItem>
+
+                  </Flex>
+                </div>
+              </div>
+
+
+            </div>
+          </TabPane>
+          <TabPane style="width: 100%;height: 100%;"
+                   [title]="titleTemplate2"
+          >
+            <ng-template #titleTemplate2>
+              <Badge>
+                <div>已审核</div>
+              </Badge>
+            </ng-template>
+            <div>
+
+
+              <div *ngIf="data.pageResolveList.length>0">
+                <div class="content" *ngFor="let mainObj of data.pageResolveList"
+                     (click)="event(data.events.navigatorDetail,mainObj,'0')">
+                  <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+                    <FlexItem class="content-title">
+                      {{mainObj.projectname}}
+                    </FlexItem>
+                    <FlexItem class="content-content">
+                      <Flex direction="row" align="between">
+                        <FlexItem class="content-content-left">{{mainObj.contractNo}}</FlexItem>
+                        <FlexItem class="content-content-right">{{mainObj.status}}</FlexItem>
+                      </Flex>
+                    </FlexItem>
+                    <FlexItem class="content-content1">
+                      <Flex direction="row" align="start">
+                        <FlexItem class="content-content1-left">{{mainObj.undertakeUnitName}}</FlexItem>
+                        <FlexItem class="content-content1-right">{{mainObj.commitmentName}}</FlexItem>
+                      </Flex>
+                    </FlexItem>
+                  </Flex>
+                </div>
+              </div>
+              <div *ngIf="data.pageRejectList.length>0">
+                <div class="content" *ngFor="let mainObj of data.pageRejectList"
+                     (click)="event(data.events.navigatorDetail,mainObj,'0')">
+                  <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+                    <FlexItem class="content-title">
+                      {{mainObj.projectname}}
+                    </FlexItem>
+                    <FlexItem class="content-content">
+                      <Flex direction="row" align="between">
+                        <FlexItem class="content-content-left">{{mainObj.contractNo}}</FlexItem>
+                        <FlexItem class="content-content-right">{{mainObj.status}}</FlexItem>
+                      </Flex>
+                    </FlexItem>
+                    <FlexItem class="content-content1">
+                      <Flex direction="row" align="start">
+                        <FlexItem class="content-content1-left">{{mainObj.undertakeUnitName}}</FlexItem>
+                        <FlexItem class="content-content1-right">{{mainObj.commitmentName}}</FlexItem>
+                      </Flex>
+                    </FlexItem>
+                  </Flex>
+                </div>
+              </div>
+              <div *ngIf="data.pageResolveList.length === 0 && data.pageRejectList.length === 0">
+                <div class="content">
+                  <Flex [wrap]="'wrap'" direction="column" justify="start" align="start">
+                    <FlexItem class="content-title">
+                      没有任何项目数据！
+                    </FlexItem>
+
+                  </Flex>
+                </div>
+              </div>
+
+            </div>
+          </TabPane>
+        </Tabs>
+
+
       </div>
     </div>
   </div>

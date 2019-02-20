@@ -18,7 +18,7 @@ export default class DetailsBusiness extends ParentBusiness {
     // 点击通过审批
     passedClick: 'passedClick',
     // 外链文章
-    navigatorToHref: 'navigatorToHref',
+    navigatorToContents: 'navigatorToContents',
     // 返回
     onLeftClick: 'onLeftClick',
   };
@@ -28,29 +28,28 @@ export default class DetailsBusiness extends ParentBusiness {
   };
 
   static passedClick(pthis: any, context: any): void {
-    Modal.alert('提醒', '确认通过此合同？', [
-      {
-        text: '取消', onPress: () => {
-        }
-      },
-      {
-        text: '确认', onPress: () => {
+    Modal.prompt(
+      '确认通过此合同？',
+      '可说明建议意见',
+      [{text: '取消'}, {
+        text: '确认', onPress: value => {
           const postData = Tools.parseParams({
             id: this.data.detailsContractData.projectId,
             moduleId: '1_06',
             checkResult: '1',
-            review: '通过',
+            review: value,
             userId: CacheService.get('oaUserId')
           });
           ParentBusiness.daoService.postBase(environment.moblieSystemController + this.url.saveCheckResult, postData).subscribe(res => {
             if (res.status === 'success') {
-              console.log(res);
-              ParentBusiness.router.navigate(['/contract-projectlist']);
+              ParentBusiness.router.navigate(['/acceptance-projectlist']);
             }
           });
         }
-      }
-    ]);
+      }],
+      'default',
+      ['']
+    );
   }
 
   static getDetailsContract(pthis: any, context: any): void {
@@ -67,14 +66,18 @@ export default class DetailsBusiness extends ParentBusiness {
     });
   }
 
-  static navigatorToHref(pthis: any, context: any): void {
-    ParentBusiness.router.navigate(['/contract-outerchaindata'], {
+  static navigatorToContents(pthis: any, index: any): void {
+    ParentBusiness.router.navigate(['/acceptance-outerchaindata'], {
       queryParams: {
-        ID: 2
+        titles: this.data.detailsContractData.titles[index],
+        contents: this.data.detailsContractData.contents[index]
       }
     });
   }
 
+  static getAuditerStatus(pthis: any, context: any): void {
+    this.data.auditerstatus = context;
+  }
   static failClick(pthis: any, context: any): void {
     console.log(pthis);
     console.log(context);
@@ -93,7 +96,7 @@ export default class DetailsBusiness extends ParentBusiness {
           ParentBusiness.daoService.postBase(environment.moblieSystemController + this.url.saveCheckResult, postData).subscribe(res => {
             if (res.status === 'success') {
               console.log(res);
-              ParentBusiness.router.navigate(['/contract-projectlist']);
+              ParentBusiness.router.navigate(['/acceptance-projectlist']);
             }
           });
         }

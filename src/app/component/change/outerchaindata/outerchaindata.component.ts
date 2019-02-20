@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import OuterChainBusiness from '../../../business/change.outerchain.business';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-changeouterchaindata',
@@ -8,7 +9,8 @@ import OuterChainBusiness from '../../../business/change.outerchain.business';
 })
 export class ChangeOuterchaindataComponent implements OnInit {
   ngOnInit(): void {
-    OuterChainBusiness.getData(this, 'context');
+    this.data.titles = this.route.snapshot.queryParams['titles']; // 获取url参数
+    this.data.contents = this.route.snapshot.queryParams['contents'];
   }
 
   data: any = {
@@ -18,7 +20,7 @@ export class ChangeOuterchaindataComponent implements OnInit {
     }
   };
 
-  constructor() {
+  constructor(private route: ActivatedRoute) {
     // 初始化数据对象
     this.data = OuterChainBusiness.data;
   }

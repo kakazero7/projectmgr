@@ -26,7 +26,12 @@ export class AcceptanceProjectlistComponent implements OnInit {
   onLeftClick() {
     console.log('onLeftClick');
   }
-  event(eventName, context): void {
+  onChange(item) {
+  }
+
+  onTabClick(item) {
+  }
+  event(eventName, context, status): void {
     switch (eventName) {
       // 点击显示年度的过滤条件
       case this.data.events.clickTopYearFilter:
@@ -98,7 +103,7 @@ export class AcceptanceProjectlistComponent implements OnInit {
         break;
       // 跳转至详情页
       case this.data.events.navigatorDetail:
-        ProjectBusiness.navigatorDetail(this, context);
+        ProjectBusiness.navigatorDetail(this, context, status);
         break;
       // 点击返回调用
       case this.data.events.onLeftClick:
